@@ -30,6 +30,19 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Conexión a la base de datos
 connectDB();
 
+//FOR TEST
+app.get('/', async (req, res) => {
+  try {
+    res.send('API de Extintores en funcionamiento');
+  } catch (error) {
+    res.status(500).json({ message: 'Error obteniendo extintores' });
+  }
+});
+
+
+
+
+
 // MANEJO DEL GET DE LOS TODOS LOS EXTINTORES DE LA BASE DE DATOS:
 app.get('/extintores', async (req, res) => {
   try {
