@@ -33,7 +33,7 @@ connectDB();
 //FOR TEST
 app.get('/', async (req, res) => {
   try {
-    res.send('API de Extintores en funcionamiento');
+    res.send('<h2>API de Extintores en funcionamiento</h2>');
   } catch (error) {
     res.status(500).json({ message: 'Internal Error' });
   }
