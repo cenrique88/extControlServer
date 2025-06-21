@@ -35,7 +35,7 @@ app.get('/', async (req, res) => {
   try {
     res.send('API de Extintores en funcionamiento');
   } catch (error) {
-    res.status(500).json({ message: 'Error obteniendo extintores' });
+    res.status(500).json({ message: 'Internal Error' });
   }
 });
 
@@ -56,7 +56,7 @@ app.get('/extintores', async (req, res) => {
 app.get('/extintores/:id_extintor', async (req, res) => {
   try {
     const { id_extintor } = req.params;
-    const extintor = await Extintor.findOne({id_extintor});
+    const extintor = await Extintor.findOne({id:id_extintor});
     if (!extintor) {
       return res.status(404).json({ message: 'Extintor no encontrado' });
     }

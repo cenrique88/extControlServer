@@ -12,5 +12,5 @@ const incidenciasSchema = new mongoose.Schema({
   incidencia: { type: String, required: true },
 });
 
-module.exports = mongoose.model('incidencias', incidenciasSchema);
+module.exports = mongoose.model('Incidencias', incidenciasSchema);
 
