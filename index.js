@@ -41,8 +41,6 @@ app.get('/', async (req, res) => {
 
 
 
-/*
-
 // MANEJO DEL GET DE LOS TODOS LOS EXTINTORES DE LA BASE DE DATOS:
 app.get('/extintores', async (req, res) => {
   try {
@@ -256,7 +254,7 @@ app.delete('/incidencias/:id_incidencia', async (req, res) => {
   }
 });
 
-*/
+
 
 app.listen(port, () => {
   console.log(`Servidor corriendo en http://localhost:${port}`);
