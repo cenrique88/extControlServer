@@ -33,7 +33,7 @@ connectDB();
 //FOR TEST
 app.get('/', async (req, res) => {
   try {
-    res.send('<h2>API de Extintores en funcionamiento</h2>');
+    res.send('<img src="./api.gif" alt="API GIF">');
   } catch (error) {
     res.status(500).json({ message: 'Internal Error' });
   }
