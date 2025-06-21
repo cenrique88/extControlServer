@@ -13,8 +13,8 @@ const connectDB = require('./database');
 // DEPENDENCIA DE MODELOS DE BASE DE DATOS:
 const Extintor = require('./models/Extintor');
 const Clientes = require('./models/Clientes');
-const Revisiones = require('./models/Revisiones')
-
+const Inspecciones = require('./models/Inspecciones')
+const Incidencias = require('./models/Incidencias')
 
 
 
@@ -150,53 +150,98 @@ app.delete('/clientes/:nombre_cliente', async (req, res) => {
 });
 
 
-//MANEJO DEL GET DE LAS REVISIONES EN LA BASE DE DATOS REVISIONES
-app.get('/revisiones', async (req, res) => {
+//MANEJO DEL GET DE LAS INSPECCIONES EN LA BASE DE DATOS INSPECCIONES
+app.get('/inspecciones', async (req, res) => {
   try {
-    const revision = await Revisiones.find();
-    res.json(revision);
+    const inspeccion = await Inspecciones.find();
+    res.json(inspeccion);
   } catch (error) {
-    res.status(500).json({ message: 'Error obteniendo revisiones' });
+    res.status(500).json({ message: 'Error obteniendo Inspecciones' });
   }
 });
-//MANEJO DEL GET DE UNA REVISION EN LA BASE DE DATOS REVISIONES
-app.get('/revisiones/:fecha_revision', async (req, res) => {
+//MANEJO DEL GET DE UNA INSPECCIONES EN LA BASE DE DATOS INSPECCIONES
+app.get('/inspecciones/:fecha_inspeccion', async (req, res) => {
   try {
-    const { fecha_revision } = req.params;
-    const revision = await Revisiones.findOne({fecha_revision});
-    if (!revision) {
-      return res.status(404).json({ message: 'Revision no Encontrada' });
+    const { fecha_inspeccion } = req.params;
+    const inspeccion = await Revisiones.findOne({fecha_inspeccion});
+    if (!inspeccion) {
+      return res.status(404).json({ message: 'Inspeccion no Encontrada' });
     }
-    res.json(revision);
+    res.json(inspeccion);
   } catch (error) {
-    res.status(500).json({ message: 'Error obteniendo Revision' });
+    res.status(500).json({ message: 'Error obteniendo Inspeccion' });
   }
 });
-//MANEJO DEL POST PARA LAS REVISONES EN LA BASE DE DATOS REVISIONES
-app.post('/revisiones', async (req, res) => {
+//MANEJO DEL POST PARA LAS INSPECCIONES EN LA BASE DE DATOS INSPECCIONES 
+app.post('/inspecciones', async (req, res) => {
   try {
-    const nuevaRevision = new Revisiones(req.body);
-    const saved = await nuevaRevision.save();
+    const nuevaInspeccion = new Inspecciones(req.body);
+    const saved = await nuevaInspeccion.save();
     res.status(201).json(saved);
   } catch (error) {
-    res.status(500).json({ message: 'Error guardando la Revision' });
+    res.status(500).json({ message: 'Error guardando la Inspeccion' });
   }
 });
-//MANEJO DE LA ELIMINACION DE UNA REVISION EN LA BASE DE DATOS REVISIONES 
-app.delete('/revisiones/:fecha_revision', async (req, res) => {
+//MANEJO DE LA ELIMINACION DE UNA INSPECCIONES EN LA BASE DE DATOS INSPECCIONES 
+app.delete('/inspecciones/:fecha_inspeccion', async (req, res) => {
   try {
-    const { fecha_revision } = req.params;
-    const revisionEliminado = await Revisiones.findOneAndDelete({fecha_revision});
-    if (!revisionEliminado) {
-      return res.status(404).json({ message: 'Revision no Encontrada' });
+    const { fecha_inspeccion } = req.params;
+    const inspeccionEliminada = await Inspecciones.findOneAndDelete({fecha_inspeccion});
+    if (!inspeccionEliminada) {
+      return res.status(404).json({ message: 'Inspeccion no Encontrada' });
     }
-    res.json({ message: 'Revision eliminada' });
+    res.json({ message: 'Inspeccion eliminada' });
   } catch (error) {
-    res.status(500).json({ message: 'Error eliminando Revision' });
+    res.status(500).json({ message: 'Error eliminando Inspeccion' });
   }
 });
 
 
+//MANEJO DEL GET DE LAS INCIDENCIAS EN LA BASE DE DATOS INCIDENCIAS
+app.get('/incidencias', async (req, res) => {
+  try {
+    const incidencias = await Incidencias.find();
+    res.json(incidencias);
+  } catch (error) {
+    res.status(500).json({ message: 'Error obteniendo Incidencias' });
+  }
+});
+//MANEJO DEL GET DE LAS INCIDENCIAS DE UN EXTINTOR EN LA BASE DE DATOS INCIDENCIAS
+app.get('/incidencias/:id_extintor', async (req, res) => {
+  try {
+    const { id_extintor } = req.params;
+    const incidencias = await Incidencias.find({id_extintor});
+    if (!incidencias) {
+      return res.status(404).json({ message: 'Incidencias no Encontrada' });
+    }
+    res.json(incidencias);
+  } catch (error) {
+    res.status(500).json({ message: 'Error obteniendo Incidencias' });
+  }
+});
+//MANEJO DEL POST PARA LAS INCIDENCIAS EN LA BASE DE DATOS INCIDENCIAS 
+app.post('/incidencias', async (req, res) => {
+  try {
+    const nuevaIncidencia = new Incidencias(req.body);
+    const saved = await nuevaIncidencia.save();
+    res.status(201).json(saved);
+  } catch (error) {
+    res.status(500).json({ message: 'Error guardando la Incidencia' });
+  }
+});
+//MANEJO DE LA ELIMINACION DE UNA INCIDENCIAS EN LA BASE DE DATOS INCIDENCIAS 
+app.delete('/incidencias/:id_incidencia', async (req, res) => {
+  try {
+    const { id_incidencia } = req.params;
+    const incidenciaEliminada = await Incidencias.findOneAndDelete({id_incidencia});
+    if (!incidenciaEliminada) {
+      return res.status(404).json({ message: 'Incidencia no Encontrada' });
+    }
+    res.json({ message: 'Incidencia eliminada' });
+  } catch (error) {
+    res.status(500).json({ message: 'Error eliminando Incidencia' });
+  }
+});
 
 
 
