@@ -56,7 +56,7 @@ app.get('/extintores', async (req, res) => {
 app.get('/extintores/:id_extintor', async (req, res) => {
   try {
     const { id_extintor } = req.params;
-    const extintor = await Extintor.findOne(id_extintor);
+    const extintor = await Extintor.findOne({id_extintor});
     if (!extintor) {
       return res.status(404).json({ message: 'Extintor no encontrado' });
     }
@@ -211,6 +211,19 @@ app.get('/incidencias/:id_extintor', async (req, res) => {
   try {
     const { id_extintor } = req.params;
     const incidencias = await Incidencias.find({id_extintor});
+    if (!incidencias) {
+      return res.status(404).json({ message: 'Incidencias no Encontrada' });
+    }
+    res.json(incidencias);
+  } catch (error) {
+    res.status(500).json({ message: 'Error obteniendo Incidencias' });
+  }
+});
+//MANEJO DEL GET DE LAS INCIDENCIAS POR ESTADO EN LA BASE DE DATOS INCIDENCIAS
+app.get('/incidencias/:estado', async (req, res) => {
+  try {
+    const {estado} = req.params;
+    const incidencias = await Incidencias.find({estado});
     if (!incidencias) {
       return res.status(404).json({ message: 'Incidencias no Encontrada' });
     }
