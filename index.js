@@ -33,7 +33,7 @@ connectDB();
 //FOR TEST
 app.get('/', async (req, res) => {
   try {
-    res.send('<img src="https://www.rospratechgroup.com/assets/img/portfolio/api.gif" alt="API GIF" style="width: 80%; height: auto;"><h3 style="position: fixed; top: 10%, left: 10%">API en Funcionamiento</h3>');
+    res.send('<h3 style="position: fixed; ">API en Funcionamiento</h3><img src="https://www.rospratechgroup.com/assets/img/portfolio/api.gif" alt="API GIF" style="width: 80%; height: auto;">');
   } catch (error) {
     res.status(500).json({ message: 'Internal Error' });
   }
