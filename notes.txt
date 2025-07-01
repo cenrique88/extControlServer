@@ -1,0 +1,5 @@
+capacidad: {
+  type: String,
+  required: true,
+  match: /^[0-9]+(kg|l)?$/ // por ejemplo, "5kg", "10l"
+}
