@@ -13,8 +13,9 @@ const connectDB = require('./database');
 // DEPENDENCIA DE MODELOS DE BASE DE DATOS:
 const Extintor = require('./models/Extintor');
 const Clientes = require('./models/Clientes');
-const Inspecciones = require('./models/Inspecciones')
-const Incidencias = require('./models/Incidencias')
+const Inspecciones = require('./models/Inspecciones');
+const Incidencias = require('./models/Incidencias');
+const Usuarios = require('./models/Usuarios');
 
 
 

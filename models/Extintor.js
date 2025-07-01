@@ -13,7 +13,7 @@ const extintorSchema = new mongoose.Schema({
   señalizacion: { type: String, required: true },
   soporte_nicho: { type: String, required: true },
   fecha_recarga: { type: Date, required: true },
-  inspecciones_realizadas: {type: Schema.Types.Mixed, default: {}, required: true},,
+  inspecciones_realizadas: {type: Schema.Types.Mixed, default: {}, required: true},
   observaciones: { type: String },
 });
 
