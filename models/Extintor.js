@@ -1,5 +1,6 @@
 
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
 const extintorSchema = new mongoose.Schema({
   id_extintor: { type: String, required: true },
