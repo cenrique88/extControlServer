@@ -43,14 +43,8 @@ app.get('/', async (req, res) => {
 
 
 // MANEJO DEL GET DE LOS TODOS LOS EXTINTORES DE LA BASE DE DATOS:
-app.get('/extintores', async (req, res) => {
-  try {
-    const extintores = await Extintor.find();
-    res.json(extintores);
-  } catch (error) {
-    res.status(500).json({ message: 'Error obteniendo extintores' });
-  }
-});
+app.use('/extintores', require('./routes/extintores'));
+
 //MANEJO DEL GET DE UN EXTINTOR DE LA BASE DE DATOS EXTINTORES:
 app.get('/extintores/:id_extintor', async (req, res) => {
   try {
@@ -103,6 +97,7 @@ app.delete('/extintores/:id_extintor', async (req, res) => {
 
 
 // MANEJO DEL GET DE LOS CLIENTES EN LA BASE DE DATOS CLIENTES:
+
 app.get('/clientes', async (req, res) => {
   try {
     const clientes = await Clientes.find();
@@ -125,7 +120,7 @@ app.post('/clientes/add-client', async (req, res) => {
 app.get('/clientes/:nombre_cliente', async (req, res) => {
   try {
     const { nombre_cliente } = req.params;
-    const cliente = await Clientes.findOne(nombre_cliente);
+    const cliente = await Clientes.findOne({nombre_cliente});
     if (!cliente) {
       return res.status(404).json({ message: 'Cliente no encontrado' });
     }
@@ -162,7 +157,7 @@ app.get('/inspecciones', async (req, res) => {
 app.get('/inspecciones/:fecha_inspeccion', async (req, res) => {
   try {
     const { fecha_inspeccion } = req.params;
-    const inspeccion = await Revisiones.findOne({fecha_inspeccion});
+    const inspeccion = await Inspecciones.findOne({fecha_inspeccion});
     if (!inspeccion) {
       return res.status(404).json({ message: 'Inspeccion no Encontrada' });
     }
