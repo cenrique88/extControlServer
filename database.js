@@ -10,10 +10,7 @@ const url = `mongodb+srv://${user}:${pass}@app.mvtv3jd.mongodb.net/?retryWrites=
 
 const connectDB = async () => {
 	try {
-		await mongoose.connect(url, {
-			useNewUrlParser: true,
-			useUnifiedTopology: true,
-		});
+		await mongoose.connect(url);
 		console.log("Conexión exitosa a MongoDB");
 	} catch (error) {
 		console.error("Error conectando a MongoDB:", error);

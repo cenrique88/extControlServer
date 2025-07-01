@@ -2,7 +2,7 @@
 const express = require('express');
 const router = express.Router();
 
-const Extintor = require('../models/Extintor');
+const Extintor = require('./models/Extintor');
 
 
 // MANEJO DEL GET DE LOS TODOS LOS EXTINTORES DE LA BASE DE DATOS:
@@ -14,7 +14,6 @@ try {
     res.status(500).json({ message: 'Error obteniendo extintores', error: error.message });
 }
 });
-
 
 
 
