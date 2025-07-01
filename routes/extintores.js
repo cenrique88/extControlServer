@@ -22,6 +22,12 @@ try {
 
 
 
+module.exports = router;
+
+
+
+
+
 
 
 
