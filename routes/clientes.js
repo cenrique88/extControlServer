@@ -34,7 +34,7 @@ router.post('/add-client', async (req, res) => {
 router.get('/:nombre_cliente', async (req, res) => {
     try {
         const { nombre_cliente } = req.params;
-        const cliente = await Clientes.findOne({nombre_cliente});
+        const cliente = await Clientes.findOne({nombre_cliente: nombre_cliente});
         if (!cliente) {
             return res.status(404).json({ message: 'Cliente no encontrado', error: error.message });
         }
