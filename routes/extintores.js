@@ -53,7 +53,7 @@ router.put('/extintores/:id_extintor', async (req, res) => {
         }
         res.json(extintorActualizado);
     } catch (error) {
-        res.status(500).json({ message: 'Error actualizando extintor' });
+        res.status(500).json({ message: 'Error actualizando extintor', error: error.message });
     }
 });
 
@@ -64,11 +64,11 @@ router.delete('/extintores/:id_extintor', async (req, res) => {
         const { id_extintor } = req.params;
         const extintorEliminado = await Extintor.findOneAndDelete({id_extintor});
         if (!extintorEliminado) {
-            return res.status(404).json({ message: 'Extintor no encontrado' });
+            return res.status(404).json({ message: 'Extintor no encontrado', error: error.message });
         }
         res.json({ message: 'Extintor eliminado' });
     } catch (error) {
-        res.status(500).json({ message: 'Error eliminando extintor' });
+        res.status(500).json({ message: 'Error eliminando extintor', error: error.message });
     }
 });
 
