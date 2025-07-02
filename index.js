@@ -32,7 +32,7 @@ app.get('/', async (req, res) => {
   try {
     res.send('<h3 style="position: fixed;">API en Funcionamiento</h3><img src="https://www.rospratechgroup.com/assets/img/portfolio/api.gif" alt="API GIF" style="width: 100%; height: auto;">');
   } catch (error) {
-    res.status(500).json({ message: 'Internal Error' });
+    res.status(500).json({ message: 'Internal Error', error: error.message });
   }
 });
 
