@@ -8,7 +8,7 @@ const Clientes = require('../models/Clientes');
 
 
 // MANEJO DEL GET DE LOS CLIENTES EN LA BASE DE DATOS CLIENTES:
-router.get('/clientes', async (req, res) => {
+router.get('/', async (req, res) => {
     try {
         const clientes = await Clientes.find();
         res.json(clientes);
@@ -19,7 +19,7 @@ router.get('/clientes', async (req, res) => {
 
 
 // MANEJO DEL POST PARA NUEVO CLIENTE EN LA BASE DE DATOS CLIENTES:
-router.post('/clientes/add-client', async (req, res) => {
+router.post('/add-client', async (req, res) => {
     try {
         const nuevoCliente = new Clientes(req.body);
         const saved = await nuevoCliente.save();
@@ -31,7 +31,7 @@ router.post('/clientes/add-client', async (req, res) => {
 
 
 //MANEJO DEL GET PARA OBTENER UN CLIENTE SOLO
-router.get('/clientes/:nombre_cliente', async (req, res) => {
+router.get('/:nombre_cliente', async (req, res) => {
     try {
         const { nombre_cliente } = req.params;
         const cliente = await Clientes.findOne({nombre_cliente});
@@ -46,7 +46,7 @@ router.get('/clientes/:nombre_cliente', async (req, res) => {
 
 
 //MANEJO DE LA ELIMINACION DE UN CLIENTE DE LA BASE DE DATOS CLIENTES:
-router.delete('/clientes/:nombre_cliente', async (req, res) => {
+router.delete('/:nombre_cliente', async (req, res) => {
     try {
         const { nombre_cliente } = req.params;
         const clienteEliminado = await Clientes.findOneAndDelete({nombre_cliente});
