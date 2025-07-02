@@ -10,8 +10,7 @@ dotenv.config();
 // DEPENDENCIA PARA CONEXION CON LA BASE DE DATOS:
 const connectDB = require('./database');
 
-// DEPENDENCIA DE MODELOS DE BASE DE DATOS:
-const Inspecciones = require('./models/Inspecciones');
+
 const Incidencias = require('./models/Incidencias');
 const Usuarios = require('./models/Usuarios');
 
@@ -46,54 +45,11 @@ app.use('/extintores', require('./routes/extintores'));
 //RUTAS PARA EL MANEJO DE LA BASE DE DATOS DE CLIENTES:
 app.use('/clientes', require('./routes/clientes'));
 
+//RUTAS PARA EL MANEJO DE LA BASE DE DATOS DE INSPECCIONES
+app.use('/inspecciones', require('./routes/inspecciones'));
 
 
 
-//MANEJO DEL GET DE LAS INSPECCIONES EN LA BASE DE DATOS INSPECCIONES
-app.get('/inspecciones', async (req, res) => {
-  try {
-    const inspeccion = await Inspecciones.find();
-    res.json(inspeccion);
-  } catch (error) {
-    res.status(500).json({ message: 'Error obteniendo Inspecciones' });
-  }
-});
-//MANEJO DEL GET DE UNA INSPECCIONES EN LA BASE DE DATOS INSPECCIONES
-app.get('/inspecciones/:fecha_inspeccion', async (req, res) => {
-  try {
-    const { fecha_inspeccion } = req.params;
-    const inspeccion = await Inspecciones.findOne({fecha_inspeccion});
-    if (!inspeccion) {
-      return res.status(404).json({ message: 'Inspeccion no Encontrada' });
-    }
-    res.json(inspeccion);
-  } catch (error) {
-    res.status(500).json({ message: 'Error obteniendo Inspeccion' });
-  }
-});
-//MANEJO DEL POST PARA LAS INSPECCIONES EN LA BASE DE DATOS INSPECCIONES 
-app.post('/inspecciones', async (req, res) => {
-  try {
-    const nuevaInspeccion = new Inspecciones(req.body);
-    const saved = await nuevaInspeccion.save();
-    res.status(201).json(saved);
-  } catch (error) {
-    res.status(500).json({ message: 'Error guardando la Inspeccion' });
-  }
-});
-//MANEJO DE LA ELIMINACION DE UNA INSPECCIONES EN LA BASE DE DATOS INSPECCIONES 
-app.delete('/inspecciones/:fecha_inspeccion', async (req, res) => {
-  try {
-    const { fecha_inspeccion } = req.params;
-    const inspeccionEliminada = await Inspecciones.findOneAndDelete({fecha_inspeccion});
-    if (!inspeccionEliminada) {
-      return res.status(404).json({ message: 'Inspeccion no Encontrada' });
-    }
-    res.json({ message: 'Inspeccion eliminada' });
-  } catch (error) {
-    res.status(500).json({ message: 'Error eliminando Inspeccion' });
-  }
-});
 
 
 //MANEJO DEL GET DE LAS INCIDENCIAS EN LA BASE DE DATOS INCIDENCIAS
