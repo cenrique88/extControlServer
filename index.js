@@ -11,7 +11,6 @@ dotenv.config();
 const connectDB = require('./database');
 
 
-const Usuarios = require('./models/Usuarios');
 
 
 
@@ -49,6 +48,9 @@ app.use('/inspecciones', require('./routes/inspecciones'));
 
 //RUTAS PARA EL MANEJO DE LA BASE DE DATOS DE INCIDENCIAS
 app.use('/incidencias', require('./routes/incidencias'));
+
+//RUTAS PARA EL MANEJO DE LA BASE DE DATOS DE INCIDENCIAS
+app.use('/usuarios', require('./routes/usuarios'));
 
 
 
