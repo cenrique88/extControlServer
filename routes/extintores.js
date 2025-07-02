@@ -26,7 +26,7 @@ router.get('/extintores/:id_extintor', async (req, res) => {
         }
         res.json(extintor);
     } catch (error) {
-        res.status(500).json({ message: 'Error obteniendo extintores' });
+        res.status(500).json({ message: 'Error obteniendo extintores', error: error.message });
     }
 });
 
