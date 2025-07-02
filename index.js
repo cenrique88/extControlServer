@@ -11,8 +11,6 @@ dotenv.config();
 const connectDB = require('./database');
 
 // DEPENDENCIA DE MODELOS DE BASE DE DATOS:
-const Extintor = require('./models/Extintor');
-const Clientes = require('./models/Clientes');
 const Inspecciones = require('./models/Inspecciones');
 const Incidencias = require('./models/Incidencias');
 const Usuarios = require('./models/Usuarios');
@@ -45,55 +43,10 @@ app.get('/', async (req, res) => {
 // RUTA PARA EL MANEJO DE LA BASE DE DATOS DE EXTINTORES:
 app.use('/extintores', require('./routes/extintores'));
 
+//RUTAS PARA EL MANEJO DE LA BASE DE DATOS DE CLIENTES:
+app.use('/clientes', require('./routes/clientes'));
 
 
-
-// MANEJO DEL GET DE LOS CLIENTES EN LA BASE DE DATOS CLIENTES:
-
-app.get('/clientes', async (req, res) => {
-  try {
-    const clientes = await Clientes.find();
-    res.json(clientes);
-  } catch (error) {
-    res.status(500).json({ message: 'Error obteniendo Clientes' });
-  }
-});
-// MANEJO DEL POST PARA NUEVO CLIENTE EN LA BASE DE DATOS CLIENTES:
-app.post('/clientes/add-client', async (req, res) => {
-  try {
-    const nuevoCliente = new Clientes(req.body);
-    const saved = await nuevoCliente.save();
-    res.status(201).json(saved);
-  } catch (error) {
-    res.status(500).json({ message: 'Error guardando el Cliente' });
-  }
-});
-//MANEJO DEL GET PARA OBTENER UN CLIENTE SOLO
-app.get('/clientes/:nombre_cliente', async (req, res) => {
-  try {
-    const { nombre_cliente } = req.params;
-    const cliente = await Clientes.findOne({nombre_cliente});
-    if (!cliente) {
-      return res.status(404).json({ message: 'Cliente no encontrado' });
-    }
-    res.json(cliente);
-  } catch (error) {
-    res.status(500).json({ message: 'Error obteniendo Cliente' });
-  }
-});
-//MANEJO DE LA ELIMINACION DE UN CLIENTE DE LA BASE DE DATOS CLIENTES:
-app.delete('/clientes/:nombre_cliente', async (req, res) => {
-  try {
-    const { nombre_cliente } = req.params;
-    const clienteEliminado = await Clientes.findOneAndDelete({nombre_cliente});
-    if (!clienteEliminado) {
-      return res.status(404).json({ message: 'Cliente no encontrado' });
-    }
-    res.json({ message: 'Cliente eliminado' });
-  } catch (error) {
-    res.status(500).json({ message: 'Error eliminando Cliente' });
-  }
-});
 
 
 //MANEJO DEL GET DE LAS INSPECCIONES EN LA BASE DE DATOS INSPECCIONES
