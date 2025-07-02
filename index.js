@@ -46,6 +46,8 @@ app.get('/', async (req, res) => {
 app.use('/extintores', require('./routes/extintores'));
 
 
+
+
 // MANEJO DEL GET DE LOS CLIENTES EN LA BASE DE DATOS CLIENTES:
 
 app.get('/clientes', async (req, res) => {

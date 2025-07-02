@@ -59,7 +59,7 @@ router.put('/extintores/:id_extintor', async (req, res) => {
 
 
 // MANEJO DE LA ELIMINACION DE UN EXTINTOR DE LA BASE DE DATOS EXTINTORES:
-app.delete('/extintores/:id_extintor', async (req, res) => {
+router.delete('/extintores/:id_extintor', async (req, res) => {
     try {
         const { id_extintor } = req.params;
         const extintorEliminado = await Extintor.findOneAndDelete({id_extintor});
