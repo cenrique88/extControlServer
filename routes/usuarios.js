@@ -4,6 +4,7 @@ const express = require('express');
 const router = express.Router();
 
 const Usuarios = require('../models/Usuarios');
+const {notify, notifyError} = require('./components/notify');
 
 
 
@@ -12,8 +13,10 @@ router.get('/', async (req, res) => {
     try {
         const usuarios = await Usuarios.find();
         res.json(usuarios);
+        notify();
     } catch (error) {
         res.status(500).json({ message: 'Error obteniendo Usuarios', error: error.message });
+        notifyError();
     }
 });
 
