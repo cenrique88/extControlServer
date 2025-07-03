@@ -4,7 +4,7 @@ const express = require('express');
 const router = express.Router();
 
 const Usuarios = require('../models/Usuarios');
-const {notify, notifyError} = require('./components/notify');
+const {notify, notifyError} = require('./components/Notify');
 
 
 
