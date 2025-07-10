@@ -44,6 +44,20 @@ router.get('/:nombre_cliente', async (req, res) => {
     }
 });
 
+// MANEJO DE LA EDICION DE UN CLIENTE EN LA BASE DE DATOS CLIENTES:
+router.put('/extintores/:id_extintor', async (req, res) => {
+    try {
+        const { nombre_cliente } = req.params;
+        const clienteActualizado = await Extintor.findOneAndUpdate(nombre_cliente, req.body, { new: true });
+        if (!clienteActualizado) {
+            return res.status(404).json({ message: 'Cliente no encontrado', error: error.message });
+        }
+        res.json(clienteActualizado);
+    } catch (error) {
+        res.status(500).json({ message: 'Error actualizando cliente', error: error.message });
+    }
+});
+
 
 //MANEJO DE LA ELIMINACION DE UN CLIENTE DE LA BASE DE DATOS CLIENTES:
 router.delete('/:nombre_cliente', async (req, res) => {
