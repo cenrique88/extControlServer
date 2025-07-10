@@ -48,7 +48,7 @@ router.get('/:nombre_cliente', async (req, res) => {
 router.put('/edit-client/:nombre_cliente', async (req, res) => {
     try {
         const { nombre_cliente } = req.params;
-        const clienteActualizado = await Clientes.findOneAndUpdate({nombre_cliente}, req.body, { new: true });
+        const clienteActualizado = await Clientes.findOneAndUpdate({nombre_cliente: nombre_cliente}, req.body, { new: true });
         if (!clienteActualizado) {
             return res.status(404).json({ message: 'Cliente no encontrado', error: error.message });
         }
