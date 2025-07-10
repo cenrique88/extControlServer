@@ -45,7 +45,7 @@ router.get('/:nombre_cliente', async (req, res) => {
 });
 
 // MANEJO DE LA EDICION DE UN CLIENTE EN LA BASE DE DATOS CLIENTES:
-router.put('/extintores/:id_extintor', async (req, res) => {
+router.put('/edit-client/:nombre_cliente', async (req, res) => {
     try {
         const { nombre_cliente } = req.params;
         const clienteActualizado = await Extintor.findOneAndUpdate(nombre_cliente, req.body, { new: true });
