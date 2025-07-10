@@ -31,10 +31,10 @@ router.post('/add-client', async (req, res) => {
 
 
 //MANEJO DEL GET PARA OBTENER UN CLIENTE SOLO
-router.get('/:nombre_cliente', async (req, res) => {
+router.get('/:_id', async (req, res) => {
     try {
-        const { nombre_cliente } = req.params;
-        const cliente = await Clientes.findOne({nombre_cliente: nombre_cliente});
+        const { _id } = req.params;
+        const cliente = await Clientes.findOne({_id});
         if (!cliente) {
             return res.status(404).json({ message: 'Cliente no encontrado', error: error.message });
         }
@@ -45,10 +45,10 @@ router.get('/:nombre_cliente', async (req, res) => {
 });
 
 // MANEJO DE LA EDICION DE UN CLIENTE EN LA BASE DE DATOS CLIENTES:
-router.put('/edit-client/:id', async (req, res) => {
+router.put('/edit-client/:_id', async (req, res) => {
     try {
-        const { id } = req.params;
-        const clienteActualizado = await Clientes.findOneAndUpdate({id}, req.body, { new: true });
+        const { _id } = req.params;
+        const clienteActualizado = await Clientes.findOneAndUpdate({_id}, req.body, { new: true });
         if (!clienteActualizado) {
             return res.status(404).json({ message: `Cliente ${id} no encontrado`});
         }
