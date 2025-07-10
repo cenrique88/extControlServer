@@ -45,12 +45,12 @@ router.get('/:nombre_cliente', async (req, res) => {
 });
 
 // MANEJO DE LA EDICION DE UN CLIENTE EN LA BASE DE DATOS CLIENTES:
-router.put('/edit-client/:nombre_cliente', async (req, res) => {
+router.put('/edit-client/:id', async (req, res) => {
     try {
-        const { nombre_cliente } = req.params;
-        const clienteActualizado = await Clientes.findOneAndUpdate({nombre_cliente: nombre_cliente}, req.body, { new: true });
+        const { id } = req.params;
+        const clienteActualizado = await Clientes.findOneAndUpdate({id}, req.body, { new: true });
         if (!clienteActualizado) {
-            return res.status(404).json({ message: 'Cliente no encontrado', error: error.message });
+            return res.status(404).json({ message: `Cliente ${id} no encontrado`});
         }
         res.json(clienteActualizado);
     } catch (error) {
