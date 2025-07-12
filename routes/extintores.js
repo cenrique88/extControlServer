@@ -17,10 +17,10 @@ router.get('/', async (req, res) => {
 
 
 //MANEJO DEL GET DE UN EXTINTOR DE LA BASE DE DATOS EXTINTORES:
-router.get('/extintores/:id_extintor', async (req, res) => {
+router.get('/:_id', async (req, res) => {
     try {
         const { id_extintor } = req.params;
-        const extintor = await Extintor.findOne({id:id_extintor});
+        const extintor = await Extintor.findOne({_id});
         if (!extintor) {
         return res.status(404).json({ message: 'Extintor no encontrado', error: error.message });
         }
@@ -32,22 +32,22 @@ router.get('/extintores/:id_extintor', async (req, res) => {
 
 
 //MANEJO DEL POST PARA NUEVO ESTINTOR DE LA BASE DE DATOS EXTINTORES:
-router.post('/extintores', async (req, res) => {
+router.post('/', async (req, res) => {
     try {
         const nuevoExtintor = new Extintor(req.body);
         const guardado = await nuevoExtintor.save();
         res.status(201).json(guardado);
     } catch (error) {
-        res.status(500).json({ message: 'Error guardando extintor', error: error.message });
+        res.status(500).json({ message: 'Error guardando extintor', error });
     }
 });
 
 
 // MANEJO DE LA EDICION DE UN EXTINTOR EN LA BASE DE DATOS EXTINTORES:
-router.put('/extintores/:id_extintor', async (req, res) => {
+router.put('/:_id', async (req, res) => {
     try {
-        const { id_extintor } = req.params;
-        const extintorActualizado = await Extintor.findOneAndUpdate(id_extintor, req.body, { new: true });
+        const { _id } = req.params;
+        const extintorActualizado = await Extintor.findOneAndUpdate({_id}, req.body, { new: true });
         if (!extintorActualizado) {
             return res.status(404).json({ message: 'Extintor no encontrado', error: error.message });
         }
@@ -59,10 +59,10 @@ router.put('/extintores/:id_extintor', async (req, res) => {
 
 
 // MANEJO DE LA ELIMINACION DE UN EXTINTOR DE LA BASE DE DATOS EXTINTORES:
-router.delete('/extintores/:id_extintor', async (req, res) => {
+router.delete('/:_id', async (req, res) => {
     try {
         const { id_extintor } = req.params;
-        const extintorEliminado = await Extintor.findOneAndDelete({id_extintor});
+        const extintorEliminado = await Extintor.findOneAndDelete({_id});
         if (!extintorEliminado) {
             return res.status(404).json({ message: 'Extintor no encontrado', error: error.message });
         }
