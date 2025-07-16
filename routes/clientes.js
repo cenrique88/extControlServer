@@ -19,7 +19,7 @@ router.get('/', async (req, res) => {
 
 
 // MANEJO DEL POST PARA NUEVO CLIENTE EN LA BASE DE DATOS CLIENTES:
-router.post('/add-client', async (req, res) => {
+router.post('/add', async (req, res) => {
     try {
         const nuevoCliente = new Clientes(req.body);
         const saved = await nuevoCliente.save();
@@ -45,7 +45,7 @@ router.get('/:_id', async (req, res) => {
 });
 
 // MANEJO DE LA EDICION DE UN CLIENTE EN LA BASE DE DATOS CLIENTES:
-router.put('/edit-client/:_id', async (req, res) => {
+router.put('/edit/:_id', async (req, res) => {
     try {
         const { _id } = req.params;
         const clienteActualizado = await Clientes.findOneAndUpdate({_id}, req.body, { new: true });

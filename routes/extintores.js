@@ -32,7 +32,7 @@ router.get('/:_id', async (req, res) => {
 
 
 //MANEJO DEL POST PARA NUEVO ESTINTOR DE LA BASE DE DATOS EXTINTORES:
-router.post('/', async (req, res) => {
+router.post('/add', async (req, res) => {
     try {
         const nuevoExtintor = new Extintor(req.body);
         const guardado = await nuevoExtintor.save();
@@ -44,7 +44,7 @@ router.post('/', async (req, res) => {
 
 
 // MANEJO DE LA EDICION DE UN EXTINTOR EN LA BASE DE DATOS EXTINTORES:
-router.put('/:_id', async (req, res) => {
+router.put('/edit/:_id', async (req, res) => {
     try {
         const { _id } = req.params;
         const extintorActualizado = await Extintor.findOneAndUpdate({_id}, req.body, { new: true });
