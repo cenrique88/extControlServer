@@ -17,16 +17,19 @@ router.get('/', async (req, res) => {
 
 
 //MANEJO DEL GET DE UN EXTINTOR DE LA BASE DE DATOS EXTINTORES:
-router.get('/:_id', async (req, res) => {
-    try {
-        const { id_extintor } = req.params;
-        const extintor = await Extintor.findOne({_id});
-        if (!extintor) {
-        return res.status(404).json({ message: 'Extintor no encontrado', error: error.message });
-        }
-        res.json(extintor);
-    } catch (error) {
-        res.status(500).json({ message: 'Error obteniendo extintores', error: error.message });
+router.get('/:prop', async (req, res) => {
+    switch(req.params.prop){
+        case '_id':
+            try {
+                const { id_extintor } = req.params;
+                const extintor = await Extintor.findOne({_id});
+                if (!extintor) {
+                return res.status(404).json({ message: 'Extintor no encontrado', error: error.message });
+                }
+                res.json(extintor);
+            } catch (error) {
+                res.status(500).json({ message: 'Error obteniendo extintores', error: error.message });
+            }
     }
 });
 
