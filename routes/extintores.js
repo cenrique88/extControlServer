@@ -25,11 +25,11 @@ router.get('/', async (req, res) => {
             try {
                 const extintor = await Extintor.findOne({[key]:value});
                 if (!extintor) {
-                return res.status(404).json({ message: 'Extintor no encontrado', error: error.message });
+                return res.status(404).json({ message: 'Extintor no encontrado' });
                 }
                 res.json(extintor);
             } catch (error) {
-                res.status(500).json({ message: 'Error obteniendo extintores', error: error.message });
+                res.status(500).json({ message: 'Error obteniendo extintores' });
             };
             break;
         
