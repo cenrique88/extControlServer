@@ -19,7 +19,8 @@ router.get('/', async (req, res) => {
 //MANEJO DEL GET DE UN EXTINTOR DE LA BASE DE DATOS EXTINTORES:
 router.get('/:prop', async (req, res) => {
     const { prop } = req.params;
-    switch({prop}){
+    console.log(prop);
+    switch(prop){
         case '_id':
             try {
                 const { _id } = req.params;
