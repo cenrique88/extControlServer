@@ -6,7 +6,7 @@ const Extintor = require('../models/Extintor');
 
 
 //MANEJO DEL GET DE UN EXTINTOR DE LA BASE DE DATOS EXTINTORES:
-router.get('/', async (req, res) => {
+router.get('/search', async (req, res) => {
     const allowedKeys = ['_id', 'ubicacion'];
 
     const { key, value } = req.query;
