@@ -16,7 +16,7 @@ router.get('/', async (req, res) => {
         switch(key){
             case '_id':
                 try {
-                    const extintor = await Extintor.findOne({[key]:value});
+                    const extintor = await Extintor.find({[key]:value});
                     if (!extintor) {
                     return res.status(404).json({ message: 'Extintor no encontrado' });
                     }
