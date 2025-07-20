@@ -7,7 +7,7 @@ const Extintor = require('../models/Extintor');
 
 //MANEJO DEL GET DE UN EXTINTOR DE LA BASE DE DATOS EXTINTORES:
 router.get('/search', async (req, res) => {
-    const allowedKeys = ['_id', 'ubicacion'];
+    const allowedKeys = ['_id', 'cliente, id_extintor'];
 
     const { key, value } = req.query;
     console.log(key,' = ' ,value);
@@ -18,13 +18,37 @@ router.get('/search', async (req, res) => {
                 try {
                     const extintor = await Extintor.find({[key]:value});
                     if (!extintor) {
-                    return res.status(404).json({ message: 'Extintor no encontrado' });
+                    return res.status(404).json({ message: 'Extintor por _id no encontrado' });
                     }
                     res.json(extintor);
                 } catch (error) {
-                    res.status(500).json({ message: 'Error obteniendo extintores' });
+                    res.status(500).json({ message: 'Error obteniendo extintor por _id' });
                 };
                 break;
+            
+                case 'cliente':
+                    try {
+                        const extintor = await Extintor.find({[key]:value});
+                        if (!extintor) {
+                        return res.status(404).json({ message: 'Extintores por cliente no encontrado' });
+                        }
+                        res.json(extintor);
+                    } catch (error) {
+                        res.status(500).json({ message: 'Error obteniendo extintores por cliente' });
+                    };
+                    break;
+
+                case 'id_extintor':
+                    try {
+                        const extintor = await Extintor.find({[key]:value});
+                        if (!extintor) {
+                        return res.status(404).json({ message: 'Extintores por cliente no encontrado' });
+                        }
+                        res.json(extintor);
+                    } catch (error) {
+                        res.status(500).json({ message: 'Error obteniendo extintores por cliente' });
+                    };
+                    break;
             
         }
         
