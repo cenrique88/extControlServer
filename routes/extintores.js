@@ -5,6 +5,36 @@ const router = express.Router();
 const Extintor = require('../models/Extintor');
 
 
+//MANEJO DEL GET DE UN EXTINTOR DE LA BASE DE DATOS EXTINTORES:
+router.get('/', async (req, res) => {
+    const allowedKeys = ['_id', 'ubicacion'];
+
+    const { key, value } = req.query;
+    console.log(key,' = ' ,value);
+
+    if (allowedKeys.includes(key)) {
+        switch(key){
+            case '_id':
+                try {
+                    const extintor = await Extintor.findOne({[key]:value});
+                    if (!extintor) {
+                    return res.status(404).json({ message: 'Extintor no encontrado' });
+                    }
+                    res.json(extintor);
+                } catch (error) {
+                    res.status(500).json({ message: 'Error obteniendo extintores' });
+                };
+                break;
+            
+        }
+        
+      } else {
+        return res.status(400).json({ message: 'Campo no permitido para búsqueda' });
+      }
+});
+
+
+
 // MANEJO DEL GET DE LOS TODOS LOS EXTINTORES DE LA BASE DE DATOS:
 router.get('/', async (req, res) => {
     try {
@@ -16,25 +46,15 @@ router.get('/', async (req, res) => {
 });
 
 
-//MANEJO DEL GET DE UN EXTINTOR DE LA BASE DE DATOS EXTINTORES:
-router.get('/', async (req, res) => {
-    const { key, value } = req.query;
-    console.log(key,' = ' ,value);
-    switch(key){
-        case '_id':
-            try {
-                const extintor = await Extintor.findOne({[key]:value});
-                if (!extintor) {
-                return res.status(404).json({ message: 'Extintor no encontrado' });
-                }
-                res.json(extintor);
-            } catch (error) {
-                res.status(500).json({ message: 'Error obteniendo extintores' });
-            };
-            break;
-        
-    }
-});
+
+
+
+
+
+
+
+
+
 
 
 //MANEJO DEL POST PARA NUEVO ESTINTOR DE LA BASE DE DATOS EXTINTORES:
