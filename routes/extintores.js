@@ -21,7 +21,7 @@ router.get('/:prop', async (req, res) => {
     switch(req.params.prop){
         case '_id':
             try {
-                const { id_extintor } = req.params;
+                const { _id } = req.params;
                 const extintor = await Extintor.findOne({_id});
                 if (!extintor) {
                 return res.status(404).json({ message: 'Extintor no encontrado', error: error.message });
