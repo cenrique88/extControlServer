@@ -70,17 +70,6 @@ router.get('/', async (req, res) => {
 });
 
 
-
-
-
-
-
-
-
-
-
-
-
 //MANEJO DEL POST PARA NUEVO ESTINTOR DE LA BASE DE DATOS EXTINTORES:
 router.post('/add', async (req, res) => {
     try {
