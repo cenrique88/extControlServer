@@ -17,14 +17,13 @@ router.get('/', async (req, res) => {
 
 
 //MANEJO DEL GET DE UN EXTINTOR DE LA BASE DE DATOS EXTINTORES:
-router.get('/:prop', async (req, res) => {
-    const { prop } = req.params;
-    console.log(prop);
+router.get('/', async (req, res) => {
+    const { key, value } = req.params;
+    console.log(key, value);
     switch(prop){
         case '_id':
             try {
-                const { _id } = req.params;
-                const extintor = await Extintor.findOne({_id});
+                const extintor = await Extintor.findOne({_id:prop});
                 if (!extintor) {
                 return res.status(404).json({ message: 'Extintor no encontrado', error: error.message });
                 }
