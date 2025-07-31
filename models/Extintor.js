@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const extintorSchema = new mongoose.Schema({
-  id_extintor: { type: String, required: true, unique: true },
+  id_extintor: { type: String, required: true, },
   cliente: {type: String, required: true},
   ubicacion: { type: String, required: true },
   material: { type: String, required: true },
