@@ -10,7 +10,7 @@ const extintorSchema = new mongoose.Schema({
   sector: { type: String, required: true },
   tipo_extintor: { type: String, required: true },
   capacidad: { type: String, required: true },
-  recarga_cada: { type: String, required: true},
+  recarga_cada: { type: Number, required: true},
   estado_extintor: { type: String, required: true },
   senalizacion: { type: String, required: true },
   soporte_nicho: { type: String, required: true },
